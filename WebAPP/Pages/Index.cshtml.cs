@@ -10,10 +10,17 @@ namespace WebAPP.Pages
        
 
         public List<Products> Products { get; set; }
+
+        private readonly IProductService _ProductService; 
+        public IndexModel(IProductService productService)
+        {
+            _ProductService= productService;
+        }
+        
+        
         public void OnGet()
         {
-            ProductService serv = new ProductService();
-            Products = serv.GetProducts();
+            Products = _ProductService.GetProducts();
         }
     }
 }
